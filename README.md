@@ -56,5 +56,3 @@ When the mouse cursor moves near the "No" button, it changes position dynamicall
 
 Samarth Guledgudd  
 First mini web development project 💙
-
-## 📂 Project Structure

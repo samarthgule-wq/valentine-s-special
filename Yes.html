@@ -7,27 +7,73 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class ="container">
-    
+    <canvas id="confetti-canvas"></canvas>
+    <div class="container">
 
-
-    <div class="tenor-gif-embed" 
-    data-postid="3407621490621176950" 
-    data-share-method="host" 
-    
+    <div class="tenor-gif-embed"
+    data-postid="3407621490621176950"
+    data-share-method="host"
     data-aspect-ratio="1"
      data-width="100%">
      <a href="https://tenor.com/view/khofar-me-and-melissa-love-for-ever-kho-loves-melissa-gif-3407621490621176950">Khofar Me And Melissa Sticker</a>
      from <a href="https://tenor.com/search/khofar-stickers">Khofar Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
-     <h1>
-        Heeeeeeheeeeee!!..... I Knew It 
-    </h1>
+     <h1>Heeeeeeheeeeee!!..... I Knew It</h1>
 
     <h3>Let's go for a date today</h3>
-    
-            
-           
-        
-    
+
+    </div>
+
+    <script>
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const colors = ['#ff6b9d', '#ff3d7f', '#ffb3c6', '#ffd6e0', '#ff85a1', '#fff', '#ff4081'];
+        const confetti = [];
+
+        for (let i = 0; i < 150; i++) {
+            confetti.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height - canvas.height,
+                w: Math.random() * 10 + 5,
+                h: Math.random() * 6 + 3,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                speed: Math.random() * 3 + 1.5,
+                angle: Math.random() * Math.PI * 2,
+                spin: (Math.random() - 0.5) * 0.1,
+                drift: (Math.random() - 0.5) * 1.5
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            confetti.forEach(c => {
+                ctx.save();
+                ctx.translate(c.x + c.w / 2, c.y + c.h / 2);
+                ctx.rotate(c.angle);
+                ctx.fillStyle = c.color;
+                ctx.fillRect(-c.w / 2, -c.h / 2, c.w, c.h);
+                ctx.restore();
+
+                c.y += c.speed;
+                c.x += c.drift;
+                c.angle += c.spin;
+
+                if (c.y > canvas.height + 20) {
+                    c.y = -20;
+                    c.x = Math.random() * canvas.width;
+                }
+            });
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    </script>
 </body>
 </html>

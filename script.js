@@ -1,18 +1,39 @@
 function moveRandomEl(elm) {
-  const maxX = window.innerWidth - elm.offsetWidth;
-  const maxY = window.innerHeight - elm.offsetHeight;
+  const padding = 50;
+  const btnW = elm.offsetWidth;
+  const btnH = elm.offsetHeight;
 
-  const randomX = Math.floor(Math.random() * maxX);
-  const randomY = Math.floor(Math.random() * maxY);
+  const minX = padding;
+  const minY = padding;
+  const maxX = window.innerWidth - btnW - padding;
+  const maxY = window.innerHeight - btnH - padding;
 
-  elm.style.position = "absolute";
-  elm.style.left = randomX + "px";
-  elm.style.top = randomY + "px";
+  const randomX = Math.floor(Math.random() * (maxX - minX)) + minX;
+  const randomY = Math.floor(Math.random() * (maxY - minY)) + minY;
+
+  elm.style.transform = "none";
+  elm.style.bottom = "auto";
+  elm.style.right = "auto";
+  elm.style.left = Math.max(padding, Math.min(randomX, maxX)) + "px";
+  elm.style.top = Math.max(padding, Math.min(randomY, maxY)) + "px";
 }
 
 const moveRandom = document.querySelector(".move-random");
 
-moveRandom.addEventListener("mouseenter", () => {
-  moveRandomEl(moveRandom);
-});
+if (moveRandom) {
+  moveRandom.addEventListener("mouseenter", () => {
+    moveRandomEl(moveRandom);
+  });
 
+  moveRandom.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    moveRandomEl(moveRandom);
+  }, { passive: false });
+}
+
+const no2NoBtn = document.getElementById("no2-no-btn");
+if (no2NoBtn) {
+  setTimeout(() => {
+    no2NoBtn.style.display = "inline-block";
+  }, 3000);
+}

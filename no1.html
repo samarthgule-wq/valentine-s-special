@@ -3,31 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Ask out here</title>
+    <title>Ask out here</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class ="container">
-    <h1>Think once please</h1>
+    <div class="container">
+    <h1>Okay fine. Explain yourself.</h1>
 
+    <div class="tenor-gif-embed"
+    data-postid="17387974"
+    data-share-method="host"
+    data-aspect-ratio="1"
+    data-width="100%">
+    <a href="https://tenor.com/view/please-please-please-cute-cat-kitty-gif-17387974">Please Please Please GIF</a>
+    from <a href="https://tenor.com/search/please-gifs">Please GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
 
-   <div class="tenor-gif-embed" 
-   data-postid="17387974" 
-   data-share-method="host" 
-   data-aspect-ratio="1" 
-   data-width="100%">
-   <a href="https://tenor.com/view/please-please-please-cute-cat-kitty-gif-17387974">Please Please Please GIF</a>
-   from <a href="https://tenor.com/search/please-gifs">Please GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
-    <h2>
-        I am waiting hear only 
-    </h2>
+    <div class="explain-area">
+        <div class="textarea-wrap">
+            <textarea id="explain-text" placeholder="Write why you want to say no..."></textarea>
+            <a href="no2.html" class="textarea-skip" id="textarea-skip">skip</a>
+        </div>
+        <p class="word-counter"><span id="word-count">0</span> / 50 words</p>
+        <button class="submit-btn" disabled>Submit</button>
+    </div>
 
+    <h3>Will you be my Valentine?</h3>
 
     <div class="btn">
-            <a href="Yes.html"><button>YES</button></a>
-            <a href="no2.html"><button>NO</button></a>
-        </div>
-    
-    
+        <a href="Yes.html" class="btn-yes">YES</a>
+    </div>
+
+    </div>
+
+    <script>
+        const textarea = document.getElementById('explain-text');
+        const wordCountEl = document.getElementById('word-count');
+
+        textarea.addEventListener('input', () => {
+            const text = textarea.value.trim();
+            let count = 0;
+            if (text.length > 0) {
+                count = text.split(/\s+/).length;
+            }
+            if (count >= 49) count = 49;
+            wordCountEl.textContent = count;
+        });
+
+        const skipBtn = document.getElementById('textarea-skip');
+        setTimeout(() => {
+            skipBtn.style.opacity = '1';
+        }, 3000);
+    </script>
 </body>
 </html>
